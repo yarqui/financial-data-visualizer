@@ -4,7 +4,6 @@ import SuggestionItem from "../SuggestionItem/SuggestionItem";
 import s from "./SuggestionList.module.css";
 
 const SuggestionList = ({ suggestions, onItemClick }) => {
-  console.log("suggestions:", suggestions);
   return (
     <div className={s.suggestionWrap}>
       <ul className={s.suggestionList}>
