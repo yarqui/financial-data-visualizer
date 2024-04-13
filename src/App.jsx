@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchBySymbolOrName } from "./services/alphaVantageApi";
+import {
+  fetchBySymbolOrName,
+  fetchFinancialData,
+} from "./services/alphaVantageApi";
+import FinancialChart from "./components/FinancialChart/FinancialChart";
 import Input from "./components/Input/Input";
 import Container from "./components/Container/Container";
+import SuggestionList from "./components/SuggestionList/SuggestionList";
 import Heading from "./components/Heading/Heading";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
@@ -49,6 +54,23 @@ const App = () => {
     }
   }, [inputVal]);
 
+  const handleSelectSuggestion = async (symbol, name) => {
+    setSuggestions([]);
+    setLoading(true);
+
+    try {
+      const data = await fetchFinancialData(symbol, name);
+
+      setFinancialData(data);
+    } catch (error) {
+      Notify.failure(`Failed to fetch data. ${error.message}`, NotiflixCfg);
+
+      setFinancialData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleClearInputVal = () => {
     setInputVal("");
     setSuggestions([]);
@@ -68,7 +90,18 @@ const App = () => {
           }}
           clearInputVal={handleClearInputVal}
         />
+
+        {suggestions.length > 0 && !loading && (
+          <SuggestionList
+            suggestions={suggestions}
+            onItemClick={handleSelectSuggestion}
+          />
+        )}
       </div>
+
+      {financialData?.data.length > 0 && !loading && (
+        <FinancialChart financialData={financialData} />
+      )}
     </Container>
   );
 };

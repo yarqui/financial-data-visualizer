@@ -1,0 +1,17 @@
+.suggestionItem {
+  padding-block: 12px;
+  cursor: pointer;
+  transition: background-color 300ms ease-in-out;
+}
+
+.suggestionItem:not(:last-child) {
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.suggestionItem:hover {
+  background-color: #edf1fe;
+}
+
+.suggestionItemSymbol {
+  font-weight: 600;
+}

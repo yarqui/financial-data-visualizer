@@ -1,0 +1,6 @@
+.chart {
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 1px 1px 5px -2px rgba(101, 101, 101, 0.75);
+}
