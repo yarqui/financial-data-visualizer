@@ -1,4 +1,4 @@
-import PropTypes, { object } from "prop-types";
+import PropTypes from "prop-types";
 import SuggestionItem from "../SuggestionItem/SuggestionItem";
 
 import s from "./SuggestionList.module.css";
@@ -22,7 +22,12 @@ const SuggestionList = ({ suggestions, onItemClick }) => {
 };
 
 SuggestionList.propTypes = {
-  suggestions: PropTypes.arrayOf(object), // FIXME: stick to real data not the static one
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      symbol: PropTypes.string,
+    }).isRequired
+  ),
   onItemClick: PropTypes.func.isRequired,
 };
 

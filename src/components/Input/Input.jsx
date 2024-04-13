@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
+
 import s from "./Input.module.css";
 
 const Input = (props) => {

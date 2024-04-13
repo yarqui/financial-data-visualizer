@@ -9,8 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
 import { Line } from "react-chartjs-2";
+
 import s from "./FinancialChart.module.css";
 
 ChartJS.defaults.font = {

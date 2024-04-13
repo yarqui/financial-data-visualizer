@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import {
   fetchBySymbolOrName,
   fetchFinancialData,
@@ -8,7 +9,7 @@ import Input from "./components/Input/Input";
 import Container from "./components/Container/Container";
 import SuggestionList from "./components/SuggestionList/SuggestionList";
 import Heading from "./components/Heading/Heading";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
+import Spinner from "./components/Spinner/Spinner";
 
 const NotiflixCfg = {
   position: "center-top",
@@ -98,6 +99,8 @@ const App = () => {
           />
         )}
       </div>
+
+      {loading && <Spinner />}
 
       {financialData?.data.length > 0 && !loading && (
         <FinancialChart financialData={financialData} />
